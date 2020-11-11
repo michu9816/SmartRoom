@@ -1,0 +1,121 @@
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    </head>
+    <body>
+        <div id="app">
+            <div class="header">
+                Status urządzeń
+            </div>
+            <div class="infoBox blue" :class="smallView ? 'lite' : ''">
+                <div class="line borderBottom">
+                    <div class="description">
+                        Temperatura
+                    </div>
+                    <div class="value chart temperature" v-if="!smallView">
+        <div class="harmonogram" style="
+    "></div><div class="harmonogram" style="margin-top: 3px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 9px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 8px;"></div><div class="harmonogram" style="margin-top: 3px;"></div><div class="harmonogram" style="margin-top: 1px;"></div><div class="harmonogram" style="margin-top: 2px;"></div><div class="harmonogram" style="margin-top: 1px;"></div><div class="harmonogram" style="margin-top: 3px;"></div>
+                    </div>
+                    <div class="value" style="width: 100%;">
+                        {{temperature}}&deg;C
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="description">
+                        Wilgotność
+                    </div>
+                    <div class="value chart humidity" v-if="!smallView">
+                    <div class="harmonogram" style="
+                "></div><div class="harmonogram" style="margin-top: 3px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 9px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 8px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 3px;"></div><div class="harmonogram" style="margin-top: 1px;"></div><div class="harmonogram" style="margin-top: 2px;"></div><div class="harmonogram" style="margin-top: 1px;"></div><div class="harmonogram" style="margin-top: 3px;"></div>
+                                </div>
+                    <div class="value" style="width: 100%;">
+                        {{humidity}} %
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="infoBox red" v-if="!smallView">
+                <div class="line">
+                    <div class="description">
+                        Czujnik zmierzchu
+                    </div>
+                    <div class="value">
+                        JASNO
+                    </div>
+                </div>
+            </div>
+            <div class="infoBox blue lite sensor" v-else style="margin-top: 15px;" :class="lightSensor ? '' : 'gray'">
+                <div class="line" style="text-align: center;">
+                    <div class="value" style="width: 100%;">
+                        <i class="fas" :class="lightSensor ? 'fa-sun' : 'fa-moon'"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="infoBox green" v-if="!smallView">
+                <div class="line">
+                    <div class="description">
+                        Czujnik ruchu
+                    </div>
+                    <div class="value">
+                        BRAK
+                    </div>
+                </div>
+            </div>
+
+            <div class="infoBox blue lite sensor" v-else :class="motionSensor ? '' : 'gray'">
+                <div class="line" style="text-align: center;">
+                    <div class="value" style="width: 100%;">
+                        <i class="fas" :class="motionSensor ? 'fa-running' : 'fa-male'"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="infoBox yellow">
+                <div class="line borderBottom">
+                    <div class="description">
+                        Pasek LED
+                    </div>
+                    <div class="value">
+                        <div class="switch" :class="light.turnOn ? 'active' : ''" @click="switchs('turnOn')"><div class="slider"></div></div>
+                    </div>
+                </div>
+                <div class="line borderBottom">
+                    <div class="description">
+                        Tryb AUTO
+                    </div>
+                    <div class="value">
+                        <div class="switch" :class="light.auto ? 'active' : ''" @click="switchs('auto')"><div class="slider"></div></div>
+                    </div>
+                </div>
+                <div class="line borderBottom">
+                    <div class="description">
+                        Tęcza
+                    </div>
+                    <div class="value">
+                        <div class="switch" :class="light.rainbow ? 'active' : ''" @click="switchs('rainbow')"><div class="slider"></div></div>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="description">
+                        Kolor
+                    </div>
+                    <div class="value">
+                        <input type="color" class="color" v-model="light.color">
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </body>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/script.js"></script>
+</html>

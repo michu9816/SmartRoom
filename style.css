@@ -1,0 +1,139 @@
+body{
+    background:#151515;
+    font-family:'Calibri';
+    color:white;
+    transition-duration: 0.5s;
+    opacity: 0;
+}
+.infoBox {
+    margin: 15px 5px;
+    border-radius: 15px;
+    font-size: 17px;
+    padding: 10px 20px;
+    display:grid;
+    float:left;
+    width: calc(100% - 50px);
+    transition-duration: 0.5s;
+}
+.infoBox.red{
+    background: linear-gradient(45deg, rgb(255 0 0 / 0.03), rgb(255 0 0 / 0.15));
+    border: 1px solid red;
+}
+
+.infoBox.blue {
+    background: linear-gradient(45deg, rgb(0 100 255 / 0.03), rgb(0 100 255 / 0.15));
+    border: 1px solid rgb(0 100 255 / 0.5);
+}
+.infoBox.blue.lite{
+    width: calc(100% - 134px);
+}
+
+
+.infoBox.yellow {
+    background: linear-gradient(45deg, rgb(255 255 0 / 0.03), rgb(255 255 0 / 0.15));
+    border: 1px solid rgb(255 255 0 / 0.5);
+}
+
+
+.infoBox.green {
+    background: linear-gradient(45deg, rgb(0 255 0 / 0.03), rgb(0 255 0 / 0.15));
+    border: 1px solid rgb(0 255 0 / 0.5);
+}
+
+.infoBox.blue.sensor{
+    width: 30px;
+    padding: 20px;
+    margin: 5px;
+}
+
+.infoBox.gray{
+    filter: grayscale(1);
+}
+
+.description{
+    margin-top: 5px;
+    display: inline-grid;
+}
+.value{
+    display:inline-grid;
+    float:right;
+    font-size: 23px;
+    font-weight: bold;
+}
+.borderBottom{
+    border-bottom: inherit;
+    padding-bottom: 5px;
+    margin-bottom: 4px;
+}
+.switch{
+    height: 20px;
+    width: 50px;
+    margin: 2px 0;
+    border-radius: 5px;
+    background: #484848;
+    border: 1px solid white;
+    transition-duration: 0.5s;
+}
+.slider{
+    height: 14px;
+    background: white;
+    width: 20px;
+    margin: 3px;
+    border-radius: 3px;
+    transition-duration: 0.5s;
+}
+.switch.active{
+    background: inherit;
+    border: 1px solid #ffff00;
+}
+.switch.active .slider{
+    margin-left:25px;
+}
+input.color{
+    margin: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 28px;
+    outline: none;
+    border: none;
+    width: 55px;
+    background: none;
+    padding: 0px;
+}
+.header{
+    margin-left: -10px;
+    margin-top: -10px;
+    width: calc(100% + 18px);
+    text-transform: uppercase;
+    font-weight: bold;
+    background: linear-gradient(45deg, #383838d6, #505050);
+    padding: 10px 0;
+    font-size: 25px;
+    text-align: center;
+}
+
+.harmonogram {
+    height: 30px;
+    width: 6px;
+    border-left: 1px solid white;
+    float: right;
+}
+
+.humidity .harmonogram {
+    background: #0d3471;
+    border: none;
+    margin-left: 3px;
+    border-top: 1px solid white;
+}
+.temperature .harmonogram {
+    width: 8px;
+}
+.chart{
+    width: 180px;
+    display: inherit;
+    position: absolute;
+    right: 35px;
+    height: 26px;
+    overflow: hidden;
+    margin-top: -10px;
+}
