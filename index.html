@@ -9,7 +9,8 @@
     <body>
         <div id="app">
             <div class="header">
-                Status urządzeń
+                <a style="position:absolute;left:20px" :style="WebSocketLoaded ? 'color:#00ff00' : 'color:red'">•</a>
+                {{ WebSocketLoaded ? "Status urządzeń" : "PONÓW POŁĄCZENIE" }}
             </div>
             <div class="infoBox blue" :class="smallView ? 'lite' : ''">
                 <div class="line borderBottom">
@@ -49,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div class="infoBox blue lite sensor" v-else style="margin-top: 15px;" :class="lightSensor ? '' : 'gray'">
+            <div class="infoBox blue lite sensor" v-else style="margin-top: 10px;" :class="lightSensor ? '' : 'gray'">
                 <div class="line" style="text-align: center;">
                     <div class="value" style="width: 100%;">
                         <i class="fas" :class="lightSensor ? 'fa-sun' : 'fa-moon'"></i>
@@ -82,7 +83,7 @@
                         Pasek LED
                     </div>
                     <div class="value">
-                        <div class="switch" :class="light.turnOn ? 'active' : ''" @click="switchs('turnOn')"><div class="slider"></div></div>
+                        <div class="switch" @click="switchLed()" :class="light.turnOn ? 'active' : ''" @click="switchs('turnOn')"><div class="slider"></div></div>
                     </div>
                 </div>
                 <div class="line borderBottom">
@@ -106,7 +107,7 @@
                         Kolor
                     </div>
                     <div class="value">
-                        <input type="color" class="color" v-model="light.color">
+                        <input @input="sendRGB()" type="color" class="color" v-model="light.color">
                     </div>
                 </div>
             </div>
