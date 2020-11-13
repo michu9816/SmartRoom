@@ -8,7 +8,7 @@
     </head>
     <body>
         <div id="app">
-            <div class="header">
+            <div class="header" @click="WebSocketLoaded ? '' : loadWebsocket()">
                 <a style="position:absolute;left:20px" :style="WebSocketLoaded ? 'color:#00ff00' : 'color:red'">•</a>
                 {{ WebSocketLoaded ? "Status urządzeń" : "PONÓW POŁĄCZENIE" }}
             </div>

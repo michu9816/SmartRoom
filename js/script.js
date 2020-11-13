@@ -32,8 +32,8 @@ var app = new Vue({
             var wsObject = JSON.parse(message);
             vm.temperature = wsObject.dhtSensor.temperature;
             vm.humidity = wsObject.dhtSensor.humidity;
-            vm.lightSensor = wsObject.dhtSensor.lightSensor;
-            vm.motionSensor = wsObject.dhtSensor.motionSensor;
+            vm.lightSensor = wsObject.lightSensor;
+            vm.motionSensor = wsObject.motionSensor;
         },
         sendRGB: function(color){
             var vm = this;
@@ -58,11 +58,12 @@ var app = new Vue({
 
 var ws = "";
   function loadWebsocket() {
+      console.log("Łączenie z websocketem")
     if(app.WebSocketLoaded)
         return;            
     if ("WebSocket" in window) {
        // Let us open a web socket
-       ws = new WebSocket("ws://192.168.2.107:81");
+       ws = new WebSocket("ws://192.168.2.80:81");
         
        ws.onopen = function() {
           app.WebSocketLoaded = true;
@@ -72,7 +73,7 @@ var ws = "";
         
        ws.onmessage = function (evt) { 
           var received_msg = evt.data;
-          //app.unparseWebsocketMessage(received_msg);
+          app.unparseWebsocketMessage(received_msg);
        };
         
        ws.onclose = function() { 
