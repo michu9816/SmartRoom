@@ -34,6 +34,8 @@ var app = new Vue({
             vm.humidity = wsObject.dhtSensor.humidity;
             vm.lightSensor = wsObject.lightSensor;
             vm.motionSensor = wsObject.motionSensor;
+            vm.light.turnOn = wsObject.ledsOn;
+            vm.light.auto = wsObject.autoMode;
         },
         sendRGB: function(color){
             var vm = this;
@@ -44,10 +46,14 @@ var app = new Vue({
         switchLed: function(){
             var vm = this;
             if(vm.light.turnOn)
-                ws.send("#000000");
+                ws.send("o");
             else
-                ws.send(vm.light.color);
-            vm.light.turnOn = !vm.light.turnOn; 
+                ws.send('i');
+        },
+        switchAuto: function(){
+            var vm = this;
+            vm.light.auto = !vm.light.auto;
+            ws.send("a");
         }
     }
   })
@@ -58,6 +64,11 @@ var app = new Vue({
 
 var ws = "";
   function loadWebsocket() {
+      try{
+          ws.close();
+      }catch(e){
+          // nic nie rób
+      }
       console.log("Łączenie z websocketem")
     if(app.WebSocketLoaded)
         return;            
