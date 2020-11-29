@@ -45,9 +45,9 @@ var app = new Vue({
             color += wsObject.light.color.split(",")[1].toString(16);
             color += wsObject.light.color.split(",")[2].toString(16);
             vm.light.color = color;
-            vm.light.scheduledDays = wsObject.scheduledDays;
-            vm.light.scheduleOnTime = wsObject.turnOnTime;
-            vm.light.scheduleOffTime = wsObject.turnOffTime;
+            vm.light.scheduledDays = wsObject.light.scheduledDays;
+            vm.light.scheduleOnTime = wsObject.light.turnOnTime;
+            vm.light.scheduleOffTime = wsObject.light.turnOffTime;
         },
         sendRGB: function(color){
             var vm = this;
