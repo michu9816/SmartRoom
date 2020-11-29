@@ -7,10 +7,14 @@ var app = new Vue({
       motionSensor: true,
       lightSensor: true,
       light: {
+          settings: false,
           turnOn: true,
           rainbow: false,
           auto: true,
-          color: "#ffffff"
+          color: "#ffffff",
+          scheduledDays: [0,1,1,1,1,1,0],
+          scheduleOnTime: "06:25",
+          scheduleOffTime: "06:45"
       },
       WebSocketLoaded: false
     },
@@ -34,8 +38,16 @@ var app = new Vue({
             vm.humidity = wsObject.dhtSensor.humidity;
             vm.lightSensor = wsObject.lightSensor;
             vm.motionSensor = wsObject.motionSensor;
-            vm.light.turnOn = wsObject.ledsOn;
-            vm.light.auto = wsObject.autoMode;
+            vm.light.turnOn = wsObject.light.ledsOn;
+            vm.light.auto = wsObject.light.autoMode;
+            var color = "#";
+            color += wsObject.light.color.split(",")[0].toString(16);
+            color += wsObject.light.color.split(",")[1].toString(16);
+            color += wsObject.light.color.split(",")[2].toString(16);
+            vm.light.color = color;
+            vm.light.scheduledDays = wsObject.scheduledDays;
+            vm.light.scheduleOnTime = wsObject.turnOnTime;
+            vm.light.scheduleOffTime = wsObject.turnOffTime;
         },
         sendRGB: function(color){
             var vm = this;
@@ -54,6 +66,18 @@ var app = new Vue({
             var vm = this;
             vm.light.auto = !vm.light.auto;
             ws.send("a");
+        },
+        saveSettings: function(){
+            var vm = this;
+            var settings={
+                turnOnHour:parseInt(vm.light.scheduleOnTime.split(":")[0]),
+                turnOnMinute:parseInt(vm.light.scheduleOnTime.split(":")[1]),
+                turnOffHour:parseInt(vm.light.scheduleOffTime.split(":")[0]),
+                turnOffMinute:parseInt(vm.light.scheduleOffTime.split(":")[1]),
+                scheduled:vm.light.scheduledDays
+            }
+            console.log(JSON.stringify(settings));
+            ws.send(JSON.stringify(settings));
         }
     }
   })

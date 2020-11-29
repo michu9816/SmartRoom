@@ -138,3 +138,28 @@ input.color{
     overflow: hidden;
     margin-top: -10px;
 }
+.selectableOption {
+    width: calc(100% / 7 - 4px);
+    padding: 2px 0;
+    margin: 3px 1px 0;
+    float: left;
+    text-align: center;
+}
+.clear{
+    clear: both;
+}
+input{
+    background: none;
+    border-radius: 5px;
+    color:white;
+    border: 1px solid #ffff00;
+}
+.button{
+    width: 100%;
+    text-align: center;
+    border: 1px solid yellow;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 5px 0;
+    background: rgb(255 255 0 / 0.15);
+}

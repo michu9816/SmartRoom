@@ -93,6 +93,27 @@
                     <div class="value">
                         <div class="switch" :class="light.auto ? 'active' : ''" @click="switchAuto('auto');"><div class="slider"></div></div>
                     </div>
+                    <i class="fas fa-cog" style="float: right;margin: 5px 10px;" @click="light.settings = !light.settings"></i>
+                    <div class="line settings" style="margin-top: 5px;" v-if="light.settings">
+                        <div class="description" style="margin-bottom: 1px;">
+                           Godzina włączenia
+                        </div> <div class="value"><input type="time" v-model="light.scheduleOnTime"></div> 
+                        <div class="description">
+                           Godzina wyłączenia
+                        </div> <div class="value"><input type="time" v-model="light.scheduleOffTime"></div> 
+                        <div class="clear"></div>
+                        <div class="selectableOption switch" v-for="day in 7" :class="light.scheduledDays[day > 6 ? 0 : day] ? 'active' : ''" @click="light.scheduledDays[day > 6 ? 0 : day] ? light.scheduledDays[day > 6 ? 0 : day] = 0 : light.scheduledDays[day > 6 ? 0 : day] = 1;$forceUpdate();">
+                            {{ day==1 ? "Pn"
+                            : day==2 ? "Wt"
+                            : day==3 ? "Śr"
+                            : day==4 ? "Cz"
+                            : day==5 ? "Pt"
+                            : day==6 ? "Sb"
+                            : "Nd" }}
+                        </div>
+                        <div class="clear"></div>
+                        <div class="button" @click="saveSettings()">ZAPISZ</div>
+                    </div>
                 </div>
                 <div class="line borderBottom">
                     <div class="description">
