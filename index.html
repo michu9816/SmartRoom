@@ -9,74 +9,101 @@
     <body>
         <div id="app">
             <div class="header" @click="WebSocketLoaded ? '' : loadWebsocket()">
-                <a style="position:absolute;left:20px" :style="WebSocketLoaded ? 'color:#00ff00' : 'color:red'">•</a>
-                {{ WebSocketLoaded ? "Status urządzeń" : "PONÓW POŁĄCZENIE" }}
+                <div class="symbol background" :style="WebSocketLoaded ? '' : 'filter:grayscale(1)'">
+                    <div class="content">
+                        <img src="loga/symbol.svg">
+                    </div>
+                </div>
+                <a style="padding: 10px 0;color:#111111">{{ WebSocketLoaded ? "Status urządzeń" : "PONÓW POŁĄCZENIE" }}</a>            
             </div>
-            <div class="infoBox blue" :class="smallView ? 'lite' : ''">
-                <div class="line borderBottom">
-                    <div class="description">
-                        Temperatura
+            <div class="clear"></div>
+            <div class="background box half" :class="motionSensor ? '' : 'inactive'">
+                <div class="content">
+                    <div class="background">
+                        <div class="content">
+                            czujnik światła
+                        </div>
                     </div>
-                    <div class="value chart temperature" v-if="!smallView">
-        <div class="harmonogram" style="
-    "></div><div class="harmonogram" style="margin-top: 3px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 9px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 8px;"></div><div class="harmonogram" style="margin-top: 3px;"></div><div class="harmonogram" style="margin-top: 1px;"></div><div class="harmonogram" style="margin-top: 2px;"></div><div class="harmonogram" style="margin-top: 1px;"></div><div class="harmonogram" style="margin-top: 3px;"></div>
+                    <div class="clear"></div>
+                    <a style="padding: 10px;">
+                        {{ lightSensor ? "jasno" : "brak światła" }}
+                    </a>
+                    <i class="fas" :class="lightSensor ? 'fa-sun' : 'fa-moon'"></i>
+                </div>
+            </div>
+            <div class="background box half" :class="motionSensor ? '' : 'inactive'">
+                <div class="content">
+                    <div class="background">
+                        <div class="content">
+                            czujnik ruchu
+                        </div>
                     </div>
-                    <div class="value" style="width: 100%;">
+                    <div class="clear"></div>
+                    <a style="padding: 10px;">
+                        {{ motionSensor ? "wykryto ruch" : "brak aktywności" }}
+                    </a>
+                    <i class="fas" :class="motionSensor ? 'fa-running' : 'fa-male'"></i>
+                </div>
+            </div>
+            <div class="background box">
+                <div class="content">
+                    <div class="background">
+                        <div class="content">
+                            temperatura
+                        </div>
+                    </div>
+                    <div class="clear"></div> 
+                    <a style="padding: 10px;">
+                      maleje
+                    </a>
+                    <div class="value" style="margin-top: -15px;margin-right: 20px;">
                         {{temperature}}&deg;C
                     </div>
                 </div>
-                <div class="line">
-                    <div class="description">
-                        Wilgotność
+            </div>
+            <div class="background box">
+                <div class="content">
+                    <div class="background">
+                        <div class="content">
+                            wilgotność
+                        </div>
                     </div>
-                    <div class="value chart humidity" v-if="!smallView">
-                    <div class="harmonogram" style="
-                "></div><div class="harmonogram" style="margin-top: 3px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 9px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 8px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 7px;"></div><div class="harmonogram" style="margin-top: 3px;"></div><div class="harmonogram" style="margin-top: 1px;"></div><div class="harmonogram" style="margin-top: 2px;"></div><div class="harmonogram" style="margin-top: 1px;"></div><div class="harmonogram" style="margin-top: 3px;"></div>
-                                </div>
-                    <div class="value" style="width: 100%;">
+                    <div class="clear"></div> 
+                    <a style="padding: 10px;">
+                      maleje
+                    </a>
+                    <div class="value" style="margin-top: -15px;margin-right: 20px;">
                         {{humidity}} %
                     </div>
                 </div>
             </div>
-            
-            
-            <div class="infoBox red" v-if="!smallView">
-                <div class="line">
-                    <div class="description">
-                        Czujnik zmierzchu
-                    </div>
-                    <div class="value">
-                        JASNO
-                    </div>
-                </div>
-            </div>
-            <div class="infoBox blue lite sensor" v-else style="margin-top: 10px;" :class="lightSensor ? '' : 'gray'">
-                <div class="line" style="text-align: center;">
-                    <div class="value" style="width: 100%;">
-                        <i class="fas" :class="lightSensor ? 'fa-sun' : 'fa-moon'"></i>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="infoBox green" v-if="!smallView">
-                <div class="line">
-                    <div class="description">
-                        Czujnik ruchu
-                    </div>
-                    <div class="value">
-                        BRAK
-                    </div>
-                </div>
-            </div>
 
-            <div class="infoBox blue lite sensor" v-else :class="motionSensor ? '' : 'gray'">
-                <div class="line" style="text-align: center;">
-                    <div class="value" style="width: 100%;">
-                        <i class="fas" :class="motionSensor ? 'fa-running' : 'fa-male'"></i>
+            <div class="background box" style="filter: hue-rotate(225deg);" :class="light.turnOn ? '' : 'inactive'">
+                <div class="content">
+                    <div class="background">
+                        <div class="content">
+                            pasek led
+                        </div>
                     </div>
+                    <div class="clear"></div> 
+                    <a style="padding: 10px;">
+                      {{ light.turnOn ? "włączony" : "wyłączony" }}
+                    </a>
+                    <div @click="switchLed();switchs('turnOn');" class="value" style="margin-top: -15px;margin-right: 20px;background: white;color: #800033;padding: 6px 15px;transform: skewX(-20deg);"><a style="
+                        transform: skewX(20deg);
+                        font-size: 15px;
+                        text-transform: uppercase;
+                    ">{{ light.turnOn ? "wyłącz" : "włącz" }}</a></div>
+                    <div class="value" style="margin-top: -15px;margin-right: 10px;background: white;color: #800033;padding: 6px 15px;transform: skewX(-20deg);"><i class="fas fa-cog" style="
+                        transform: skewX(20deg);
+                        font-size: 15px;
+                        text-transform: uppercase;
+                        margin: 0;
+                        padding: 2px 2px 3px;
+                    "></i></div>
                 </div>
             </div>
-
+            
             <div class="infoBox yellow">
                 <div class="line borderBottom">
                     <div class="description">

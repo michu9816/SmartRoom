@@ -106,8 +106,7 @@ input.color{
     width: calc(100% + 18px);
     text-transform: uppercase;
     font-weight: bold;
-    background: linear-gradient(45deg, #383838d6, #505050);
-    padding: 10px 0;
+    background: #cecece;
     font-size: 25px;
     text-align: center;
     margin-bottom: 5px;
@@ -162,4 +161,58 @@ input{
     margin-top: 10px;
     padding: 5px 0;
     background: rgb(255 255 0 / 0.15);
+}
+
+.symbol.background{
+    float:left;
+    width:100px;
+    margin-left: -10px;
+    transition-duration: 0.5s;
+    background: linear-gradient(45deg, #800033, #aa0044)
+}
+.background{
+    transform: skewX(-20deg);
+}
+.content{
+    transform: skewX(20deg);
+}
+.symbol img{
+    height: 40px;
+}
+
+.box.background{
+    background: linear-gradient(95deg, #800033, #aa0044 50%, #444444 50%);
+    width: calc(100% - 30px);
+    margin-top: 15px;
+    margin-left: 15px;
+    background-size: 300%;
+    transition-duration: 1s;
+    float:left;
+}
+.box.background.half{
+    width: calc(50% - 20px);
+}
+.box.background .content{
+    padding: 0 0 5px;
+}
+.box.background .content .background{
+    background: white;
+    float: left;
+    margin-top: -3px;
+    margin-bottom: 5px;
+}
+.box.background .content .background .content{
+    color: #111111;
+    padding: 2px 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.box.background i{
+    float: right;
+    font-size: 24px;
+    margin-right: 20px;
+    margin-top: -12px;
+}
+.box.background.inactive{
+    background-position: right;
 }
