@@ -14,14 +14,14 @@
                         <img src="loga/symbol.svg">
                     </div>
                 </div>
-                <a style="padding: 10px 0;color:#111111">{{ WebSocketLoaded ? "Status urządzeń" : "PONÓW POŁĄCZENIE" }}</a>            
+                <div style="padding: 7px 0px;color: rgb(17, 17, 17);font-size: 14px;">{{ WebSocketLoaded ? "Status urządzeń" : "PONÓW POŁĄCZENIE" }}</div>            
             </div>
             <div class="clear"></div>
             <div class="background box half" :class="motionSensor ? '' : 'inactive'">
                 <div class="content">
                     <div class="background">
                         <div class="content">
-                            czujnik światła
+                            światło
                         </div>
                     </div>
                     <div class="clear"></div>
@@ -35,12 +35,12 @@
                 <div class="content">
                     <div class="background">
                         <div class="content">
-                            czujnik ruchu
+                            ruch
                         </div>
                     </div>
                     <div class="clear"></div>
                     <a style="padding: 10px;">
-                        {{ motionSensor ? "wykryto ruch" : "brak aktywności" }}
+                        {{ motionSensor ? "wykryto ruch" : "brak" }}
                     </a>
                     <i class="fas" :class="motionSensor ? 'fa-running' : 'fa-male'"></i>
                 </div>
@@ -89,21 +89,37 @@
                     <a style="padding: 10px;">
                       {{ light.turnOn ? "włączony" : "wyłączony" }}
                     </a>
-                    <div @click="switchLed();switchs('turnOn');" class="value" style="margin-top: -15px;margin-right: 20px;background: white;color: #800033;padding: 6px 15px;transform: skewX(-20deg);"><a style="
+                    <div @click="switchLed();switchs('turnOn');" class="value" style="margin-top: -15px;margin-right: 10px;background: white;color: #800033;padding: 6px 15px;transform: skewX(-20deg);"><a style="
                         transform: skewX(20deg);
                         font-size: 15px;
                         text-transform: uppercase;
                     ">{{ light.turnOn ? "wyłącz" : "włącz" }}</a></div>
-                    <div class="value" style="margin-top: -15px;margin-right: 10px;background: white;color: #800033;padding: 6px 15px;transform: skewX(-20deg);"><i class="fas fa-cog" style="
+                    <div class="value" style="margin-top: -15px;margin-right: 10px;background: white;color: #800033;padding: 6px 15px;transform: skewX(-20deg);" @click="light.settings = !light.settings"><i class="fas fa-cog" style="
                         transform: skewX(20deg);
                         font-size: 15px;
                         text-transform: uppercase;
                         margin: 0;
-                        padding: 2px 2px 3px;
                     "></i></div>
                 </div>
             </div>
-            
+            <div class="moreItems" style="">
+                <div class="item" style="padding:5px 10px;float: left;width: calc(100% - 20px);">
+                    <div class="name" style="float:left;color: #003961;font-weight: bold;">
+                        Tryb AUTO
+                    </div>
+                    <div class="value" @click="switchAuto('auto');" style="font-size: 14px;background: #003961;padding: 2px 10px;border-radius: 5px;" :style="light.auto ? '' : 'filter:grayscale(1)'">
+                        {{ light.auto ? "wyłącz" : "włącz" }}
+                    </div>
+                </div>
+                <div class="item" style="padding:0 10px 5px 10px;float: left;width: calc(100% - 20px);">
+                    <div class="name" style="float:left;color: #003961;font-weight: bold;">
+                        Kolor
+                    </div>
+                    <div class="value" style="font-size: 15px;border-radius: 5px;">
+                        <input @input="sendRGB()" type="color" class="color" v-model="light.color">
+                    </div>
+                </div>
+            </div>
             <div class="infoBox yellow">
                 <div class="line borderBottom">
                     <div class="description">

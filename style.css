@@ -90,10 +90,10 @@ body{
     margin-left:25px;
 }
 input.color{
-    margin: 0;
+    margin: -3px 0;
     border-radius: 15px;
     overflow: hidden;
-    height: 28px;
+    height: 25px;
     outline: none;
     border: none;
     width: 55px;
@@ -188,6 +188,7 @@ input{
     background-size: 300%;
     transition-duration: 1s;
     float:left;
+    background-position: left;
 }
 .box.background.half{
     width: calc(50% - 20px);
@@ -215,4 +216,10 @@ input{
 }
 .box.background.inactive{
     background-position: right;
+}
+.moreItems{
+    float: left;
+    background: #cecece;
+    width: calc(100% - 60px);
+    margin: 0 30px;
 }
