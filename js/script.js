@@ -9,6 +9,7 @@ var app = new Vue({
       light: {
           settings: false,
           turnOn: true,
+          checkLightAuto: false,
           rainbow: false,
           auto: true,
           color: "#ffffff",
@@ -40,10 +41,11 @@ var app = new Vue({
             vm.motionSensor = wsObject.motionSensor;
             vm.light.turnOn = wsObject.light.turnOn;
             vm.light.auto = wsObject.light.autoMode;
+            vm.light.checkLightAuto = wsObject.light.checkLightAuto;
             var color = "#";
-            color += wsObject.light.color.split(",")[0].toString(16);
-            color += wsObject.light.color.split(",")[1].toString(16);
-            color += wsObject.light.color.split(",")[2].toString(16);
+            color += (parseInt(wsObject.light.color.split(",")[0]) < 16 ? "0" : "") + parseInt(wsObject.light.color.split(",")[0]).toString(16);
+            color += (parseInt(wsObject.light.color.split(",")[1]) < 16 ? "0" : "") + parseInt(wsObject.light.color.split(",")[1]).toString(16);
+            color += (parseInt(wsObject.light.color.split(",")[2]) < 16 ? "0" : "") + parseInt(wsObject.light.color.split(",")[2]).toString(16);
             vm.light.color = color;
             vm.light.scheduledDays = wsObject.light.scheduledDays;
             var scheduleOnTime = wsObject.light.turnOnTime.split(":")[0] < 10 ? "0" + wsObject.light.turnOnTime.split(":")[0] : wsObject.light.turnOnTime.split(":")[0];
@@ -72,6 +74,11 @@ var app = new Vue({
             var vm = this;
             vm.light.auto = !vm.light.auto;
             ws.send("a");
+        },
+        switchCheckLightAuto: function(){
+            var vm = this;
+            vm.light.checkLightAuto = !vm.light.checkLightAuto;
+            ws.send("b");
         },
         saveSettings: function(){
             var vm = this;

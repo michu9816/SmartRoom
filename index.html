@@ -95,6 +95,13 @@
                     </div>
                     <i class="fas fa-cog" style="float: right;margin: 5px 10px;" @click="light.settings = !light.settings"></i>
                     <div class="line settings" style="margin-top: 5px;" v-if="light.settings">
+                        <div class="description" style="margin-bottom: 3px;">
+                           Tylko gdy ciemno
+                        </div> 
+                        <div class="value">
+                            <div class="switch" :class="light.checkLightAuto ? 'active' : ''" @click="switchCheckLightAuto();"><div class="slider"></div></div> 
+                        </div>
+                        <div class="clear"></div>
                         <div class="description" style="margin-bottom: 1px;">
                            Godzina włączenia
                         </div> <div class="value"><input type="time" v-model="light.scheduleOnTime"></div> 
