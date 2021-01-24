@@ -111,7 +111,7 @@ var ws = "";
         return;            
     if ("WebSocket" in window) {
        // Let us open a web socket
-       ws = new WebSocket("ws://192.168.2.80:81");
+       ws = new WebSocket("ws://192.168.0.170:81");
         
        ws.onopen = function() {
           app.WebSocketLoaded = true;
